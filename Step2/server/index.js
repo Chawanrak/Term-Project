@@ -47,7 +47,7 @@ app.post('/saveuser', (req, res) => {
 // ฟังก์ชันสำหรับบันทึกข้อมูลผู้ใช้ในฐานข้อมูล
 function saveUserData(userData) {
   const { gender, name, location, email, login, picture ,dob} = userData;
-  const { name_title, name_first, name_last } = name;
+  const { title, first, last } = name;
   const { country } = location;
   const { username, password, md5, sha1, sha256, uuid } = login;
   const { medium, large, thumbnail } = picture;
@@ -58,7 +58,7 @@ function saveUserData(userData) {
   // const sql = `INSERT INTO users (gender, title, first, last, country,dob, uuid, email, username, password, picture_large, picture_medium, picture_thumbnail) 
   //              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
   const sql = 'INSERT INTO users SET ?';
-  const values = {gender, name_title, name_first, name_last, country,dob:dateOfBirth, uuid, email, username, password, md5, sha1, sha256, picture_large:large, picture_medium:medium, picture_thumbnail:thumbnail};
+  const values = {gender, title, first, last, country,dob:dateOfBirth, uuid, email, username, password, md5, sha1, sha256, picture_large:large, picture_medium:medium, picture_thumbnail:thumbnail};
 
   connection.query(sql, values, (error, results, fields) => {
     if (error) {
@@ -69,6 +69,6 @@ function saveUserData(userData) {
 }
 
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
+app.listen(3009, () => {
+    console.log('Server started on port 3009');
 });
