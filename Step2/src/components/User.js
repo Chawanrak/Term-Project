@@ -6,11 +6,17 @@ const User = ({ gender, name, location, email, picture, login ,dob}) => {
     const handleSave = () => {
         const userData = { gender, name, location, email, picture, login ,dob};
         // Assuming you have a function to save user data to the database
+        const jsonData = JSON.stringify(userData);
         saveUserData(userData);
     };
 
     const saveUserData = (userData) => {
-        axios.post('/saveuser', userData) // ส่งข้อมูลผู้ใช้ไปยังเซิร์ฟเวอร์ Express
+        console.log(userData);
+        axios.post('http://api-user66009.se-rmutl.net//api/saveuser', userData, {
+                headers: {
+                    'Content-Type': 'application/json' // ระบุ Content-Type เป็น JSON
+                }
+            })
             .then(response => {
                 console.log(response.data); // แสดงข้อมูลการตอบกลับจากเซิร์ฟเวอร์
             })
