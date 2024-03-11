@@ -9,6 +9,7 @@ class Server {
     this.paths = {
       auth: "/api/auth",
       homepage: "/api/homepage",
+      saveuser : "/api/saveuser",
     };
 
     this.middlewares();
@@ -29,6 +30,7 @@ class Server {
   routes() {
     this.app.use(this.paths.auth, require("../routes/auth"));
     this.app.use(this.paths.homepage, require("../routes/homepage"));
+    this.app.use(this.paths.saveuser, require("../routes/saveuser"));
     // Catch all requests that don't match any route
     this.app.get("*", (req, res) => {
       //res.sendFile(
